@@ -33,9 +33,8 @@ Example Request Payload:
 ### TODOS
 
 * Go back and drive out the validations for emails
-* rake task to run tests
-* fix require_relatives
-
+* Send HTML email body with plaintext backup
+* Get some sample emails we can do more extensive testing of the plaintext stripping.
 
 ### QUESTIONS
 

@@ -1,4 +1,6 @@
 class Email
+
+  attr_accessor :to, :to_name, :from, :from_name, :subject, :body
   def initialize(to:, to_name:, from:, from_name:, subject:, body:)
     @to = to
     @to_name = to_name
@@ -10,5 +12,9 @@ class Email
 
   def valid?
     return !@to.nil? && @to != ''
+  end
+
+  def plain_text_body
+    body.gsub(/<[^>]*>/, "")
   end
 end

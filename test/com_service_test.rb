@@ -1,6 +1,6 @@
 ENV['APP_ENV'] = 'test'
 
-require_relative 'com_service'
+require_relative '../com_service'
 require 'rack/test'
 require "minitest/autorun"
 
@@ -21,7 +21,7 @@ class HelloWorldTest < Minitest::Test
     params = {
       "to": "fake@example.com",
       "to_name": "Ms. Fake",
-      "from": "noreply@uber.com",
+      "from": "giosue_c@hotmail.com",
       "from_name": "Uber",
       "subject": "A Message from Uber",
       "body": "<h1>Your Bill</h1><p>$10</p>"
@@ -36,7 +36,7 @@ class HelloWorldTest < Minitest::Test
 
     params = {
       "to_name": "Ms. Fake",
-      "from": "noreply@uber.com",
+      "from": "giosue_c@hotmail.com",
       "from_name": "Uber",
       "subject": "A Message from Uber",
       "body": "<h1>Your Bill</h1><p>$10</p>"
