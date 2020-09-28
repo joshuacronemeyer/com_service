@@ -32,9 +32,8 @@ Example Request Payload:
 
 ### TODOS
 
-* Go back and drive out the validations for emails
-* Send HTML email body with plaintext backup
 * Get some sample emails we can do more extensive testing of the plaintext stripping.
+* Conversation with the team about mapping email service error messages back to our error responses.
 
 ### QUESTIONS
 

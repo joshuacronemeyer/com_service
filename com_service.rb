@@ -1,6 +1,6 @@
 require 'sinatra'
-require_relative 'email'
-require_relative 'sendgrid_gateway'
+require_relative 'lib/email'
+require_relative 'lib/sendgrid_gateway'
 
 get '/' do
   'Hello world!'

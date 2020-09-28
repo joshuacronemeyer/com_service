@@ -1,6 +1,6 @@
 ENV['APP_ENV'] = 'test'
 
-require_relative '../email'
+require_relative '../lib/email'
 require "minitest/autorun"
 
 class EmailTest < Minitest::Test
