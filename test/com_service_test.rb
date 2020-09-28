@@ -3,6 +3,7 @@ ENV['APP_ENV'] = 'test'
 require_relative '../com_service'
 require 'rack/test'
 require "minitest/autorun"
+require 'webmock/minitest'
 
 class HelloWorldTest < Minitest::Test
   include Rack::Test::Methods
@@ -18,6 +19,7 @@ class HelloWorldTest < Minitest::Test
   # end
 
   def test_we_can_post_to_email
+    stub_request(:post, SendgridGateway::MAIL_URL)
     params = {
       "to": "fake@example.com",
       "to_name": "Ms. Fake",

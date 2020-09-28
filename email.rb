@@ -11,10 +11,17 @@ class Email
   end
 
   def valid?
-    return !@to.nil? && @to != ''
+    return [:to, :to_name, :from_name, :from, :subject, :body].all?{|attr| has_required_attr?(attr)}
   end
 
   def plain_text_body
     body.gsub(/<[^>]*>/, "")
+  end
+
+  private
+
+  def has_required_attr?(attr)
+    attr_val = self.send(attr)
+    !attr_val.nil? && attr_val != ''
   end
 end
