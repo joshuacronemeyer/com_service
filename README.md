@@ -11,17 +11,20 @@
 
 ### an HTTP service that accepts POST requests with JSON data to a ‘/email’
 
-Example Request Payload:
+Curl command to test with
 
 ```
-{
-   “to”: “fake@example.com”,
-   “to_name”: “Ms. Fake”,
-   “from”: “noreply@uber.com”,
-   “from_name”: “Uber”,
-   “subject”: “A Message from Uber”,
-   “body”: “<h1>Your Bill</h1><p>$10</p>”
-}
+curl "https://com-service.herokuapp.com/email" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+        "to": "fake@example.com",
+        "to_name": "Ms. Fake",
+        "from": "giosue_c@hotmail.com",
+        "from_name": "Uber",
+        "subject": "A Message from Uber",
+        "body": "<h1>Your Bill</h1><p>$10</p>"
+      }'
 ```
 
 #### Features
@@ -72,18 +75,3 @@ curl "https://api.postmarkapp.com/email" \
       }'
 ```
 
-### Curl a request in
-
-```
-curl "https://com-service.herokuapp.com/email" \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-        "to": "fake@example.com",
-        "to_name": "Ms. Fake",
-        "from": "noreply@uber.com",
-        "from_name": "Uber",
-        "subject": "A Message from Uber",
-        "body": "<h1>Your Bill</h1><p>$10</p>"
-      }'
-```
