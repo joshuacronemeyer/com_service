@@ -2,10 +2,6 @@ require 'sinatra'
 require_relative 'lib/email'
 require_relative 'lib/sendgrid_gateway'
 
-get '/' do
-  'Hello world!'
-end
-
 post '/email' do
 
   email = Email.new(to: params["to"], to_name: params["to_name"], from: params["from"], from_name: params["from_name"], subject: params["subject"], body: params["body"])
