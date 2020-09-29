@@ -12,7 +12,7 @@ class EmailProviderTest < Minitest::Test
       EmailProvider.new.send_email(email:nil)
     end
 
-    assert_match /Email service must be/, error.message
+    assert_match(/Email service must be/, error.message)
   end
 
   def test_invalid_provider_raises_error
@@ -21,7 +21,7 @@ class EmailProviderTest < Minitest::Test
       EmailProvider.new.send_email(email:nil)
     end
 
-    assert_match /Email service must be/, error.message
+    assert_match(/Email service must be/, error.message)
   end
 
   def test_we_can_configure_postmark

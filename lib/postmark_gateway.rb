@@ -10,7 +10,9 @@ class PostmarkGateway
     req = Net::HTTP::Post.new(uri.path)
     req['content-type'] = "application/json"
     req['accept'] = "application/json"
-    req['X-Postmark-Server-Token'] = "#{ENV["POSTMARK_KEY"]}"
+    postmark_key = ENV["POSTMARK_KEY"]
+    raise "POSTMARK_KEY must be configured" if postmark_key.nil? || postmark_key == ""
+    req['X-Postmark-Server-Token'] = "#{}"
 
     req.body = %{{
         "From": "#{email.from_name} #{email.from}",
