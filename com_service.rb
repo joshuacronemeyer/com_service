@@ -5,7 +5,6 @@ require_relative 'lib/email'
 require_relative 'lib/email_provider'
 require_relative 'lib/sendgrid_gateway'
 
-
 set :logger, Logger.new(STDOUT)
 
 post '/email' do
