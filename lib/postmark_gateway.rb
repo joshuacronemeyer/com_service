@@ -20,6 +20,9 @@ class PostmarkGateway
         "TextBody": "#{email.plain_text_body}",
         "MessageStream": "outbound"
     }}
-    https.request(req)
+    response = https.request(req)
+    if response.code.to_i >= 500
+      raise "Postmark responded with: code-#{response.code} : message-#{response.message} : body-#{response.body}"
+    end
   end
 end

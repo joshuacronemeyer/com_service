@@ -5,7 +5,6 @@ require 'webmock/minitest'
 
 class SendgridGatewayTest < Minitest::Test
   def test_sendgrid_500_raises
-    ENV["EMAIL_SERVICE"] = 'sendgrid'
     stub_request(:post,  SendgridGateway::MAIL_URL).to_return(status: [500, "Internal Server Error"])
     email = Email.new(to: "george@example.com", to_name: "George", from: "martha@example.com", from_name: "Martha", subject: "Let's go", body: "I want to go.")
     error = assert_raises RuntimeError do
