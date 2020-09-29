@@ -12,5 +12,17 @@ class PostmarkGatewayTest < Minitest::Test
     end
     assert_equal "Postmark responded with: code-500 : message-Internal Server Error : body-", error.message
   end
+
+  def test_json_to_postmark_contains_all_our_great_data
+    stub_request(:post,  PostmarkGateway::MAIL_URL)
+    email = Email.new(to: "george@example.com", to_name: "George", from: "martha@example.com", from_name: "Martha", subject: "Let's go", body: "I want to go.")
+    PostmarkGateway.new.send_email(email: email)
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /george@example.com/
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /martha@example.com/
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /George/
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /Martha/
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /Let's go/
+    assert_requested :post, PostmarkGateway::MAIL_URL, body: /I want to go/
+  end
 end
 
