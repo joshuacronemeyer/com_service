@@ -77,6 +77,7 @@ curl "https://api.postmarkapp.com/email" \
 ```
 curl "https://com-service.herokuapp.com/email" \
   -X POST \
+  -H "Content-Type: application/json" \
   -d '{
         "to": "fake@example.com",
         "to_name": "Ms. Fake",

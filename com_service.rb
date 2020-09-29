@@ -1,14 +1,31 @@
 require 'sinatra'
+require 'logger'
+
 require_relative 'lib/email'
+require_relative 'lib/email_provider'
 require_relative 'lib/sendgrid_gateway'
+
+
+set :logger, Logger.new(STDOUT)
 
 post '/email' do
 
-  email = Email.new(to: params["to"], to_name: params["to_name"], from: params["from"], from_name: params["from_name"], subject: params["subject"], body: params["body"])
+  request.body.rewind
+  request_payload = ""
+  begin
+    request_payload = JSON.parse request.body.read
+  rescue JSON::ParserError
+    status 400
+    return { error: "Invalid request JSON"}.to_json
+  end
+
+
+  email = Email.new(to: request_payload["to"], to_name: request_payload["to_name"], from: request_payload["from"], from_name: request_payload["from_name"], subject: request_payload["subject"], body: request_payload["body"])
   if email.valid?
     EmailProvider.new.send_email(email: email)
   else
     status 400
+    logger.error "Invalid email json: #{request_payload}"
     { error: "All fields are required."}.to_json
   end
 

@@ -16,6 +16,12 @@ class HelloWorldTest < Minitest::Test
     ENV["EMAIL_SERVICE"] = 'sendgrid'
   end
 
+  def test_we_handle_missing_body
+    post '/email', ""
+
+    assert_equal 400, last_response.status
+  end
+
   def test_we_can_post_to_email
     stub_request(:post, SendgridGateway::MAIL_URL)
     params = {
@@ -27,7 +33,7 @@ class HelloWorldTest < Minitest::Test
       "body": "<h1>Your Bill</h1><p>$10</p>"
     }
 
-    post '/email', params
+    post '/email', params.to_json
 
     assert last_response.ok?
   end
@@ -42,7 +48,7 @@ class HelloWorldTest < Minitest::Test
       "body": "<h1>Your Bill</h1><p>$10</p>"
     }
 
-    post '/email', params
+    post '/email', params.to_json
 
     assert_equal 400, last_response.status
     response = JSON.parse(last_response.body)
@@ -63,7 +69,7 @@ class HelloWorldTest < Minitest::Test
   #     "body": "<h1>Your Bill</h1><p>$10</p>"
   #   }
   #
-  #   post '/email', params
+  #   post '/email', params.to_json
   #
   #   assert_equal 500, last_response.status
   #   response = JSON.parse(last_response.body)
