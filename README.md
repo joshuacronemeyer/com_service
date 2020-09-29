@@ -1,8 +1,10 @@
 # Communications Service
 
-This was built in a few hours as a challenge to showcase my dev chops. Here is a screencast of me building it. 
+This software was built as a demonstration of my programming skills. It showcases how I use OO principles to design a system, break down a problem into incremental tasks, and apply TDD to get rapid feedback and working software. 
 
-It is a service to provide redundancy and a uniform API across communications service providers. Currently we support email sending via sendgrid and postmark.
+Here is [a screencast - video still uploading. i'll link there soon] (https://) of me building it in case you'd like to see the entire journey.
+
+This software is an HTTP service providing an endpoint for sending email. It uses Sendgrid and Postmark to provide redundancy across communications service providers.
 
 ## How to install this service
 
@@ -10,7 +12,7 @@ This service can be deployed to heroku or run anywhere as a rack application wit
 
 `bundle exec rackup config.ru -p $PORT`
 
-You will need to configure a few things:
+You will need to set a few environment variables for the software to work:
 
 ```
 export EMAIL_SERVICE=sendgrid #use postmark if you want to switch
@@ -20,11 +22,13 @@ export SENDGRID_KEY=$sendgrid_api_key
 
 ## Language and microframework choice/discussion
 
-I'm a Rails programmer so I figured i'd be most productive using Sinatra. I understand using a microframework will decrease the learning curve for others working on the project.
+The problem specified that we should use a microframework to provide the HTTP interface for our service. I'm a Rails programmer so I chose Sinatra since it is very simple and is Ruby based. Using a microframework will let us focus on the domain and how I've chosen to model it.
 
 ## Trade­offs, omissions, todos
 
-Error handling is a really important part of any service. Having clear and comprehensive handling of error conditions will improve quality and happiness from people who consume our API. Sendgrid and Postmark have very rich error responses and handle all the kinds of validation that our clients could want. I have implemented some basic error handling just to demonstrate I can build and test such things, but I want to have a clear understanding of who is consuming this service before I decide to pick a direction with creating a robust API.
+Time and communications were my biggest constraints on this project. Doing anything 'production ready' in just 3 hours means you don't have much time to spend on your decisions. I did my best to mitigate the time constraint by doing the simplest reasonable thing first. I call that building the 'thinnest possible end to end slice'. Communications was the other major constraint. Given no information about what consumers my API would have was a big problem. Is this service to be used by a mobile client where a user might need feedback about the validity of their inputs or is it to be used by internal systems generating automated emails? In the end my other constraint, time, informed everything. I built some basic validations and error responses to demonstrate my understanding, and to allow me to quickly get feedback from whoever the consumer of this service is.
+
+Robust validation of the input is one big conversation that needs to happen. Error handling is a really important part of any service. Having clear and comprehensive handling of error conditions will improve quality and happiness from people who consume our API. Sendgrid and Postmark have very rich error responses and handle all the kinds of validation that our clients could want. I have implemented some basic error handling just to demonstrate I can build and test such things, but I want to have a clear understanding of who is consuming this service before I decide to pick a direction with creating a robust API.
 
 Here are some tradeoffs/omissions/todos:
 
@@ -33,10 +37,9 @@ Here are some tradeoffs/omissions/todos:
 * It's using webrick. For production we'd want a different webserver.
 * I was really keen to implement automatic failover, but had already hit my limit on the amount of time I could spend on this.
 
-
-Thanks! It was a cool and fun project.
-
 ## Implementation Notes
+
+Here are just some notes I made for myself while I was building the system. I left them here since they feature prominently in the YouTube video.
 
 ### an HTTP service that accepts POST requests with JSON data to a ‘/email’
 
