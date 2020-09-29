@@ -1,7 +1,9 @@
-ruby '2.7.1'
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem 'sinatra'
+ruby '2.7.1'
+source 'https://rubygems.org'
+
 gem 'rack-test'
-gem 'webmock'
 gem 'rubocop', require: false
+gem 'sinatra'
+gem 'webmock'
