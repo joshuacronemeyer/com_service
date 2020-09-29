@@ -1,4 +1,3 @@
-ENV['APP_ENV'] = 'test'
 
 require_relative '../lib/email_provider'
 require_relative '../lib/email'

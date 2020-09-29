@@ -1,5 +1,3 @@
-ENV['APP_ENV'] = 'test'
-
 require_relative '../lib/email'
 require_relative '../lib/sendgrid_gateway'
 require "minitest/autorun"

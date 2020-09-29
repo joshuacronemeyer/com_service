@@ -13,3 +13,8 @@ post '/email' do
 
 end
 
+error do
+  status 500
+  { error: env['sinatra.error'].message }.to_json
+end
+

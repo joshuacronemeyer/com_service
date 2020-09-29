@@ -1,5 +1,5 @@
-ENV['APP_ENV'] = 'test'
 
+ENV['APP_ENV'] = 'test'
 require_relative '../com_service'
 require 'rack/test'
 require "minitest/autorun"
@@ -46,4 +46,25 @@ class HelloWorldTest < Minitest::Test
 
     assert_equal 400, last_response.status
   end
+
+  # TODO Need to understand how to change to production mode or somehow force
+  # our sinatra error handler to trigger so we can test..
+  #
+  # def test_sendgrid_500_raises
+  #   stub_request(:post,  SendgridGateway::MAIL_URL).to_return(status: [500, "Internal Server Error"])
+  #   params = {
+  #     "to": "fake@example.com",
+  #     "to_name": "Ms. Fake",
+  #     "from": "giosue_c@hotmail.com",
+  #     "from_name": "Uber",
+  #     "subject": "A Message from Uber",
+  #     "body": "<h1>Your Bill</h1><p>$10</p>"
+  #   }
+  #
+  #   post '/email', params
+  #
+  #   assert_equal 500, last_response.status
+  #   response = JSON.parse(last_response.body)
+  #   assert_equal "Sendgrid responded with: code-500 : message-Internal Server Error : body-", response["error"]
+  # end
 end
