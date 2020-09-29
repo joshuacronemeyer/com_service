@@ -65,7 +65,7 @@ curl "https://com-service.herokuapp.com/email" \
 * Convert the ‘body’ HTML to a plain text version to send along to the email provider. You can simply remove the HTML tags.
 * Once the data has been processed and meets the validation requirements, it should send the email by making an HTTP request (don’t use SMTP) to one of the following two services: sendgrid, postmark
 
-#### Optional Features
+#### Optional Features - Which I haven't done... Yet
 
 * Instead of relying on a configuration change for choosing which email provider to use, dynamically select a provider based on their error responses. For instance, if Sendgrid started to timeout or was returning errors, automatically switch to Postmark.
 * Keep a record of emails passing through your service in some queryable form of data storage.
