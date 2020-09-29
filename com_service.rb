@@ -9,6 +9,7 @@ post '/email' do
     EmailProvider.new.send_email(email: email)
   else
     status 400
+    { error: "All fields are required."}.to_json
   end
 
 end

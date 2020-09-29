@@ -33,12 +33,8 @@ Example Request Payload:
 ### TODOS
 
 * Get some sample emails we can do more extensive testing of the plaintext stripping.
-* Conversation with the team about mapping email service error messages back to our error responses.
+* Conversation with the team about mapping email service error messages back to our error responses. There are a lot of useful errors these services return.
 * Add sendgrid gateway test to make sure we send right json
-
-### QUESTIONS
-
-* how to handle validation error messages
 
 #### Optional Features
 

@@ -45,6 +45,8 @@ class HelloWorldTest < Minitest::Test
     post '/email', params
 
     assert_equal 400, last_response.status
+    response = JSON.parse(last_response.body)
+    assert_equal "All fields are required.", response["error"]
   end
 
   # TODO Need to understand how to change to production mode or somehow force
