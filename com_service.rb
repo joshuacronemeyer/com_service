@@ -19,13 +19,11 @@ post '/email' do
     return { error: "Invalid request JSON"}.to_json
   end
 
-
   email = Email.new(to: request_payload["to"], to_name: request_payload["to_name"], from: request_payload["from"], from_name: request_payload["from_name"], subject: request_payload["subject"], body: request_payload["body"])
   if email.valid?
-    EmailProvider.new.send_email(email: email)
+    EmailProvider.new.send_email(email: email, logger: logger)
   else
     status 400
-    logger.error "Invalid email json: #{request_payload}"
     { error: "All fields are required."}.to_json
   end
 
@@ -33,6 +31,7 @@ end
 
 error do
   status 500
+  logger.error env['sinatra.error'].message
   { error: env['sinatra.error'].message }.to_json
 end
 
