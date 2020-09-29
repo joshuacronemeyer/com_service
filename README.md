@@ -34,6 +34,7 @@ Example Request Payload:
 
 * Get some sample emails we can do more extensive testing of the plaintext stripping.
 * Conversation with the team about mapping email service error messages back to our error responses.
+* Add sendgrid gateway test to make sure we send right json
 
 ### QUESTIONS
 
@@ -64,14 +65,14 @@ curl "https://api.postmarkapp.com/email" \
   -X POST \
   -H "Accept: application/json" \
   -H "Content-Type: application/json" \
-  -H "X-Postmark-Server-Token: server token" \
+  -H "X-Postmark-Server-Token: <<apikey>>" \
   -d '{
-  "From": "sender@example.com",
-  "To": "receiver@example.com",
-  "Subject": "Postmark test",
-  "TextBody": "Hello dear Postmark user.",
-  "HtmlBody": "<html><body><strong>Hello</strong> dear Postmark user.</body></html>",
-  "MessageStream": "outbound"
-}'
+        "From": "Josh Cronemeyer josh@laneone.com",
+        "To": "Sender Person josh+test@laneone.com",
+        "Subject": "Hello from Postmark",
+        "HtmlBody": "<strong>Hello</strong> dear Postmark user.",
+        "TextBody": "Hello dear Postmark user.",
+        "MessageStream": "outbound"
+      }'
 ```
 

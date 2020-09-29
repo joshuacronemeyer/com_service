@@ -12,6 +12,9 @@ class HelloWorldTest < Minitest::Test
     Sinatra::Application
   end
 
+  def setup
+    ENV["EMAIL_SERVICE"] = 'sendgrid'
+  end
   # def test_it_says_hello_world
   #   get '/'
   #   assert last_response.ok?

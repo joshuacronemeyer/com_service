@@ -12,6 +12,6 @@ class SendgridGateway
     req['authorization'] = "Bearer #{ENV["SENDGRID_KEY"]}"
     req['content-type'] = "application/json"
     req.body = %{{"personalizations":[{"to":[{"email":"#{email.to}","name":"#{email.to_name}"}],"subject":"#{email.subject}"}],"content": [ {"type": "text/plain", "value": "#{email.plain_text_body}"}, {"type": "text/html", "value": "#{email.body}"}],"from":{"email":"#{email.from}","name":"#{email.from_name}"}}}
-    res = https.request(req)
+    https.request(req)
   end
 end
