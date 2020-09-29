@@ -2,7 +2,7 @@
 
 This software was built as a demonstration of my programming skills. It showcases how I use OO principles to design a system, break down a problem into incremental tasks, and apply TDD to get rapid feedback and working software. 
 
-Here is [a screencast - video still uploading. i'll link there soon] (https://) of me building it in case you'd like to see the entire journey.
+Here is [a screencast - video still uploading. i'll link there soon](https://) of me building it in case you'd like to see the entire journey.
 
 This software is an HTTP service providing an endpoint for sending email. It uses Sendgrid and Postmark to provide redundancy across communications service providers.
 
