@@ -1,6 +1,6 @@
 # Communications Service
 
-This software was built as a demonstration of my programming skills. It showcases how I use OO principles to design a system, break down a problem into incremental tasks, and apply TDD to get rapid feedback and working software. 
+This software was built as a demonstration of my programming skills. It showcases how I use OO principles to design a system, break down a problem into incremental tasks, and apply TDD to get rapid feedback and working software. [Jump to a description of the functionality](#an-http-service-that-accepts-post-requests-with-json-data-to-a-email)
 
 Here is [a screencast - video still uploading. i'll link there soon](https://) of me building it in case you'd like to see the entire journey.
 
