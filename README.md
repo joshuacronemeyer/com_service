@@ -72,3 +72,17 @@ curl "https://api.postmarkapp.com/email" \
       }'
 ```
 
+### Curl a request in
+
+```
+curl "https://com-service.herokuapp.com/email" \
+  -X POST \
+  -d '{
+        "to": "fake@example.com",
+        "to_name": "Ms. Fake",
+        "from": "noreply@uber.com",
+        "from_name": "Uber",
+        "subject": "A Message from Uber",
+        "body": "<h1>Your Bill</h1><p>$10</p>"
+      }'
+```
