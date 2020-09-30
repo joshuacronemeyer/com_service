@@ -2,7 +2,11 @@
 
 This software was built as a demonstration of my programming skills. It showcases how I use OO principles to design a system, break down a problem into incremental tasks, and apply TDD to get rapid feedback and working software. [Jump to a description of the functionality](#an-http-service-that-accepts-post-requests-with-json-data-to-a-email)
 
-Here is [a screencast](https://youtu.be/lKcFZeRD6Cc) of me building it in case you'd like to see the entire journey.
+Here is [a screencast](https://youtu.be/lKcFZeRD6Cc) of me building it in case you'd like to see the entire journey. A few key moments along the way are:
+* [Getting a sad path test for invalid email passing](https://youtu.be/lKcFZeRD6Cc?t=1980)
+* [Sending our first email with sendgrid](https://youtu.be/lKcFZeRD6Cc?t=3344)
+* [TDDing a regex for stripping HTML markup](https://youtu.be/lKcFZeRD6Cc?t=4257)
+* [Sending our first email with postmark](https://youtu.be/lKcFZeRD6Cc?t=9084)
 
 This software is an HTTP service providing an endpoint for sending email. It uses Sendgrid and Postmark to provide redundancy across communications service providers.
 
