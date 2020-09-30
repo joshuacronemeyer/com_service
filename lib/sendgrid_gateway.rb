@@ -17,6 +17,7 @@ class SendgridGateway
     req.body = sendgrid_email_json(email: email)
     response = https.request(req)
     handle_500(response: response)
+    handle_400(response: response)
   end
 
   private
@@ -41,6 +42,12 @@ class SendgridGateway
 
   def handle_500(response:)
     return unless response.code.to_i >= 500
+
+    raise "Sendgrid responded with: code-#{response.code} : message-#{response.message} : body-#{response.body}"
+  end
+
+  def handle_400(response:)
+    return unless response.code.to_i >= 400 && response.code.to_i <= 499
 
     raise "Sendgrid responded with: code-#{response.code} : message-#{response.message} : body-#{response.body}"
   end
