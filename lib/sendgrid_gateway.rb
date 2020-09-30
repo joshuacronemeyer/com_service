@@ -29,11 +29,14 @@ class SendgridGateway
   end
 
   def sendgrid_email_json(email:)
-    { "personalizations":
-       [{ "to": [{ "email": email.to, "name": email.to_name }], "subject": email.subject }],
+    {
+      "personalizations":
+        [{ "to": [{ "email": email.to, "name": email.to_name }], "subject": email.subject }],
       "content":
-     [{ "type": 'text/plain', "value": email.plain_text_body }, { "type": 'text/html', "value": email.body }],
-      "from": { "email": email.from, "name": email.from_name } }.to_json
+        [{ "type": 'text/plain', "value": email.plain_text_body }, { "type": 'text/html', "value": email.body }],
+      "from":
+        { "email": email.from, "name": email.from_name }
+    }.to_json
   end
 
   def handle_500(response:)
