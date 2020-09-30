@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'net/http'
+
+# Understands how to talk to postmark
 class PostmarkGateway
   MAIL_URL = 'https://api.postmarkapp.com/email'
 
@@ -11,12 +13,17 @@ class PostmarkGateway
     req = Net::HTTP::Post.new(uri.path)
     req['content-type'] = 'application/json'
     req['accept'] = 'application/json'
-    postmark_key = ENV['POSTMARK_KEY']
-    raise 'POSTMARK_KEY must be configured' if postmark_key.nil? || postmark_key == ''
+    req['X-Postmark-Server-Token'] = ensure_postmark_configuration
 
-    req['X-Postmark-Server-Token'] = ''
+    req.body = postmark_email_json(email: email)
+    response = https.request(req)
+    handle_500(response: response)
+  end
 
-    req.body = %({
+  private
+
+  def postmark_email_json(email:)
+    %({
         "From": "#{email.from_name} #{email.from}",
         "To": "#{email.to_name} #{email.to}",
         "Subject": "#{email.subject}",
@@ -24,9 +31,18 @@ class PostmarkGateway
         "TextBody": "#{email.plain_text_body}",
         "MessageStream": "outbound"
     })
-    response = https.request(req)
-    if response.code.to_i >= 500
-      raise "Postmark responded with: code-#{response.code} : message-#{response.message} : body-#{response.body}"
-    end
+  end
+
+  def ensure_postmark_configuration
+    postmark_key = ENV['POSTMARK_KEY']
+    raise 'POSTMARK_KEY must be configured' if postmark_key.nil? || postmark_key == ''
+
+    postmark_key
+  end
+
+  def handle_500(response:)
+    return unless response.code.to_i >= 500
+
+    raise "Postmark responded with: code-#{response.code} : message-#{response.message} : body-#{response.body}"
   end
 end

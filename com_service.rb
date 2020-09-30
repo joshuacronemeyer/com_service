@@ -7,7 +7,7 @@ require_relative 'lib/email'
 require_relative 'lib/email_provider'
 require_relative 'lib/sendgrid_gateway'
 
-set :logger, Logger.new(STDOUT)
+set :logger, Logger.new($stdout)
 
 post '/email' do
   request.body.rewind
@@ -19,7 +19,15 @@ post '/email' do
     return { error: 'Invalid request JSON' }.to_json
   end
 
-  email = Email.new(to: request_payload['to'], to_name: request_payload['to_name'], from: request_payload['from'], from_name: request_payload['from_name'], subject: request_payload['subject'], body: request_payload['body'])
+  email = Email.new(
+    to: request_payload['to'],
+    to_name: request_payload['to_name'],
+    from: request_payload['from'],
+    from_name: request_payload['from_name'],
+    subject: request_payload['subject'],
+    body: request_payload['body']
+  )
+
   if email.valid?
     EmailProvider.new.send_email(email: email, logger: logger)
   else
