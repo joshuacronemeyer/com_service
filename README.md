@@ -37,6 +37,12 @@ Here are some tradeoffs/omissions/todos:
 * It's using webrick. For production we'd want a different webserver.
 * I was really keen to implement automatic failover, but had already hit my limit on the amount of time I could spend on this.
 
+## Running the build
+
+This codebase features unit tests and rubocop linting. Run them after any changes and before commit. The default rake task will do it.
+
+`rake`
+
 ## Implementation Notes
 
 Here are just some notes I made for myself while I was building the system. I left them here since they feature prominently in the YouTube video.
